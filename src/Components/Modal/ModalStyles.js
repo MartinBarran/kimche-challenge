@@ -31,6 +31,7 @@ export const ModalContent = styled.div`
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     width: 70%;
     height: 50%;
+    max-width:600px;
     overflow-y: auto;
     position: relative;
     color: white;
@@ -50,6 +51,9 @@ export const ModalStrings= styled.div`
     flex-direction: column;
     justify-content: center;
     width: 100%;
+    & span{
+        color: lightblue;
+    }
     
 `;
 

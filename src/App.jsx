@@ -8,12 +8,13 @@ import Modal from './Components/Modal/Modal';
 
 const App = () => {
 
-    //Estados para almacenar data de personajes, num de página, string buscado y modal
+    //Estados para almacenar data de personajes, num de página, string buscado, modal (abierto/cerrado e info relevante), y máximo de páginas según API
     const [characters, setCharacters] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
     const [searchedName,setSearchedName] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCharacterData, setSelectedCharacterData] = useState(null);
+    const [maxPages, setMaxPages] = useState(1);
 
     //Realizamos consulta GraphQL con useQuery y pasamos variables
     const { loading, error, data } = useQuery(GET_CHARACTERS, {
@@ -23,6 +24,7 @@ const App = () => {
       },
     });
 
+    //Funciones para manejar lógica del modal, seteando su estado
     const openModal = (characterData) => {
       setSelectedCharacterData(characterData);
       setIsModalOpen(true);
@@ -36,6 +38,7 @@ const App = () => {
     useEffect(() => {
       if (data && data.characters) {
         setCharacters(data.characters.results);
+        setMaxPages(data.characters.info.pages)
       }
     }, [data]);
 
@@ -43,9 +46,9 @@ const App = () => {
 
     return (
       <>
-        <SearchBar setSearchedName={setSearchedName} />
+        <SearchBar setSearchedName={setSearchedName} setPageNumber={setPageNumber} />
         <FilterBar />
-        <CardsList characters={characters} openModal={openModal} />
+        <CardsList characters={characters} openModal={openModal} maxPages={maxPages} setPageNumber={setPageNumber} pageNumber={pageNumber}/>
          {isModalOpen && (
         <Modal characterData={selectedCharacterData} closeModal={closeModal} />
       )}

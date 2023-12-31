@@ -9,9 +9,9 @@ const Modal = ({ characterData, closeModal }) => {
                 <img src={characterData.image} alt={characterData.name}/>
                 <ModalStrings>
                     <h2>{characterData.name}</h2>
-                    <h4>Status: {characterData.status}</h4>
-                    <h4>Specie: {characterData.species}</h4>
-                    <h4>Gender: {characterData.gender}</h4>
+                    <h4><span>Status:</span> {characterData.status}</h4>
+                    <h4><span>Specie:</span> {characterData.species}</h4>
+                    <h4><span>Gender:</span> {characterData.gender}</h4>
                 </ModalStrings>
             </ModalInfo>
             <ModalCloseButton onClick={closeModal}>

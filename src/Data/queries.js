@@ -4,6 +4,9 @@ import { gql } from '@apollo/client';
 export const GET_CHARACTERS = gql`
   query GetCharacters($page: Int!, $nameFilter: String) {
     characters(page: $page, filter: { name: $nameFilter }) {
+      info {
+        pages
+      }
       results {
         id
         name
