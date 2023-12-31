@@ -1,9 +1,9 @@
 import { gql } from '@apollo/client';
 
-//Query GraphQL recibiendo parámetros
+//Query GraphQL para traer info de personajes
 export const GET_CHARACTERS = gql`
-  query GetCharacters($page: Int!, $nameFilter: String) {
-    characters(page: $page, filter: { name: $nameFilter }) {
+  query GetCharacters($page: Int!, $searchedName: String, $filteredGender: String, $filteredSpecies: String, $filteredStatus: String) {
+    characters(page: $page, filter: { name: $searchedName, gender: $filteredGender, species: $filteredSpecies, status: $filteredStatus  }) {
       info {
         pages
       }
@@ -18,3 +18,5 @@ export const GET_CHARACTERS = gql`
     }
   }
 `;
+
+//$filteredSpecies: String, $filteredStatus: String

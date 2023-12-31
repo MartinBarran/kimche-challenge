@@ -1,25 +1,29 @@
-import { SearchBarStyled, SearchInputStyled } from "./SearchBarStyles"
+import FilterBar from './FilterBar/FilterBar';
+import ResetSearchButton from './ResetSearchButton/ResetSearchButton';
+import SearchInput from './SearchInput/SearchInput';
+import { SearchBarStyled, SearchButtonsContainer } from './SearchBarStyles';
 
+const SearchBar = ({setSearchedName, setPageNumber, setFilteredGender, setFilteredStatus, setFilteredSpecies}) =>{
 
-//Componente de barra de búsqueda, con input y botón
-const SearchBar = ({setSearchedName, setPageNumber}) =>{
+    const handleReset = () =>{
+        setFilteredSpecies("");
+        setFilteredStatus("");
+        setFilteredGender("");
+        setSearchedName(""); 
+    }
 
-    //Al modificarse el valor en el input, se actualiza el estado searchedName y se setea el número de página en 1
-    const handleInputChange = (event) => {
-        const newValue = event.target.value;
-        setSearchedName(newValue);
-        setPageNumber(1);
-      };
-
-    return(
+    return (
+        <>
         <SearchBarStyled>
-            <SearchInputStyled
-              type="text"
-              onChange={handleInputChange}
-              placeholder="Search..."
-            />
+            <SearchInput setSearchedName={setSearchedName} setPageNumber={setPageNumber} />
+            <SearchButtonsContainer>
+                <FilterBar setFilteredGender={setFilteredGender} setFilteredStatus={setFilteredStatus} setFilteredSpecies={setFilteredSpecies} setSearchedName={setSearchedName} />
+                <ResetSearchButton onReset={() => handleReset()}/>
+            </SearchButtonsContainer>
         </SearchBarStyled>
+        </>
     )
-}
+
+    }
 
 export default SearchBar

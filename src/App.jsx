@@ -1,10 +1,12 @@
-import FilterBar from './Components/FilterBar/FilterBar';
-import SearchBar from './Components/SearchBar/SearchBar';
+
 import CardsList from './Components/CardList/CardList';
 import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_CHARACTERS } from './Data/queries';
 import Modal from './Components/Modal/Modal';
+import SearchBar from './Components/SearchBar/SearchBar';
+
+
 
 const App = () => {
 
@@ -15,14 +17,23 @@ const App = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCharacterData, setSelectedCharacterData] = useState(null);
     const [maxPages, setMaxPages] = useState(1);
+    const [filteredGender, setFilteredGender] = useState("")
+    const [filteredSpecies, setFilteredSpecies] = useState("")
+    const [filteredStatus, setFilteredStatus] = useState("")
+    
+
 
     //Realizamos consulta GraphQL con useQuery y pasamos variables
     const { loading, error, data } = useQuery(GET_CHARACTERS, {
       variables: {
         page: pageNumber, 
-        nameFilter: searchedName, 
+        searchedName: searchedName, 
+        filteredGender: filteredGender,
+        filteredSpecies: filteredSpecies,
+        filteredStatus: filteredStatus,
       },
     });
+    
 
     //Funciones para manejar lógica del modal, seteando su estado
     const openModal = (characterData) => {
@@ -42,12 +53,12 @@ const App = () => {
       }
     }, [data]);
 
+    //logCharacters();
 
 
     return (
       <>
-        <SearchBar setSearchedName={setSearchedName} setPageNumber={setPageNumber} />
-        <FilterBar />
+        <SearchBar setSearchedName={setSearchedName} setPageNumber={setPageNumber} setFilteredGender={setFilteredGender} setFilteredStatus={setFilteredStatus} setFilteredSpecies={setFilteredSpecies}/>
         <CardsList characters={characters} openModal={openModal} maxPages={maxPages} setPageNumber={setPageNumber} pageNumber={pageNumber}/>
          {isModalOpen && (
         <Modal characterData={selectedCharacterData} closeModal={closeModal} />

@@ -5,8 +5,8 @@ export const FilterBarStyled = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	gap: 30px;
-	padding: 0px 0px 20px 0px;
 	width: 100%;
+	height: 100%;
 	
 	& select{
 		width: 30%;
