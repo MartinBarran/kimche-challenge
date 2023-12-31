@@ -14,11 +14,9 @@ const SearchBar = ({setSearchedName}) =>{
         <SearchBarStyled>
             <SearchInputStyled
               type="text"
-              //value={searchTerm}
               onChange={handleInputChange}
               placeholder="Search..."
             />
-            <button /*onClick={handleSearch}*/>Search</button>
         </SearchBarStyled>
     )
 }
