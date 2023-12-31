@@ -2,7 +2,7 @@ import { CardStyled } from "./CardStyles";
 
 //Creación de tarjeta individual de personaje; recibe objeto con propiedades y desestructura
 const Card = ({ character }) => {
-  const { name, status, species, genre, image } = character;
+  const { name, status, species, gender, image } = character;
 
   return (
     <CardStyled>
@@ -10,7 +10,7 @@ const Card = ({ character }) => {
       <h3>{name}</h3>
       <p>Status: {status}</p>
       <p>Species: {species}</p>
-      <p>Genre: {genre}</p>
+      <p>Gender: {gender}</p>
     </CardStyled>
   );
 };

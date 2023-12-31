@@ -28,7 +28,7 @@ const FilterBar = () => {
     <FilterBarStyled>
       <Filter label="Status..." options={statusOptions} selectedValue="" onChange={(value) => console.log(value)} />
       <Filter label="Specie..." options={speciesOptions} selectedValue="" onChange={(value) => console.log(value)} />
-      <Filter label="Genre..." options={genderOptions} selectedValue="" onChange={(value) => console.log(value)} />
+      <Filter label="Gender..." options={genderOptions} selectedValue="" onChange={(value) => console.log(value)} />
       <ResetFiltersButton onReset={() => console.log('Reset')} />
     </FilterBarStyled>
   );

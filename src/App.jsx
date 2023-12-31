@@ -1,41 +1,43 @@
-
-
-import FilterBar from './Components/FilterBar/FilterBar'
-import SearchBar from './Components/SearchBar/SearchBar'
-import CardsList from './Components/CardList/CardList'
-import React, { useState, useEffect } from 'react';
+import FilterBar from './Components/FilterBar/FilterBar';
+import SearchBar from './Components/SearchBar/SearchBar';
+import CardsList from './Components/CardList/CardList';
+import { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_CHARACTERS } from './Data/queries';
 
 const App = () => {
-  
-  //Estado para manejar datos de los personajes
-  const [characters, setCharacters] = useState([]);
 
+    //Estados para almacenar data de personajes, num de página y string buscado
+    const [characters, setCharacters] = useState([]);
+    const [pageNumber, setPageNumber] = useState(1);
+    const [searchedName,setSearchedName] = useState("");
+
+
+  //Realizamos consulta GraphQL con useQuery y pasamos variables
+  const { loading, error, data } = useQuery(GET_CHARACTERS, {
+    variables: {
+      page: pageNumber, 
+      nameFilter: searchedName, 
+    },
+  });
+
+
+  //Atualizamos el estado local cuando cambian los datos de la consulta
   useEffect(() => {
-    // DATA de API simulada provisoriamente para desarrollo de interfaz
-    const falseApidData = [
-      { id: 1, name: 'Rick Sanchez', status: 'Alive', species: 'Human', genre:"Male", image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg' },
-      { id: 2, name: 'Morty Smith', status: 'Alive', species: 'Human', genre:"Male", image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg' },
-      { id: 3, name: 'Ethan', status: 'Unknown', species: 'Human', genre:"Male", image: 'https://rickandmortyapi.com/api/character/avatar/114.jpeg' },
-      { id: 4, name: 'Hookah Alien', status: 'Alive', species: 'Alien', genre:"Male", image: 'https://rickandmortyapi.com/api/character/avatar/158.jpeg' },
-      { id: 1, name: 'Rick Sanchez', status: 'Alive', species: 'Human', genre:"Male", image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg' },
-      { id: 2, name: 'Morty Smith', status: 'Alive', species: 'Human', genre:"Male", image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg' },
-      { id: 3, name: 'Ethan', status: 'Unknown', species: 'Human', genre:"Male", image: 'https://rickandmortyapi.com/api/character/avatar/114.jpeg' },
-      { id: 4, name: 'Hookah Alien', status: 'Alive', species: 'Alien', genre:"Male", image: 'https://rickandmortyapi.com/api/character/avatar/158.jpeg' },
-      
-    ];
+    if (data && data.characters) {
+      setCharacters(data.characters.results);
+    }
+  }, [data]);
+  
 
-    //Actualizamos estado de datos de personajes
-    setCharacters(falseApidData);
-  }, []);
 
-  //Devolvemos todos los componentes: Barra buscadora, Filtros, y Tarjetas
   return (
     <>
-     <SearchBar />
-     <FilterBar />
-     <CardsList characters={characters}/>
+      <SearchBar setSearchedName={setSearchedName} />
+      <FilterBar />
+      <CardsList characters={characters} />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
