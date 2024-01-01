@@ -1,7 +1,7 @@
 # Desafío para Dev
 
 Nombre postulante: Martín Barrandeguy
-Link a la app en producción: [LINK DEL DEPLOY]
+Link a la app en producción: https://kimche-challenge-rick-and-morty.vercel.app/
 
 ## Instrucciones
 
