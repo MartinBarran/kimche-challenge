@@ -27,14 +27,14 @@ const FilterBar = ({setFilteredGender, setFilteredSpecies, setFilteredStatus, se
 
   // Opciones de filtro hardcodeadas
   const statusOptions = [
+    { value: '', label: 'All' },
     { value: 'alive', label: 'Alive' },
     { value: 'dead', label: 'Dead' },
     { value: 'unknown', label: 'Unknown' },
-    { value: '', label: 'All' },
-
   ];
 
   const speciesOptions = [
+    { value: '', label: 'All' },
     { value: 'human', label: 'Human' },
     { value: 'alien', label: 'Alien' },
     { value: 'humanoid', label: 'Humanoid' },
@@ -45,22 +45,21 @@ const FilterBar = ({setFilteredGender, setFilteredSpecies, setFilteredStatus, se
     { value: 'desease', label: 'Desease' },
     { value: 'poopybutthole', label: 'Poopybutthole' },
     { value: 'unknown', label: 'Unknown' },
-    { value: '', label: 'All' },
   ];
 
   const genderOptions = [
+    { value: '', label: 'All' },
     { value: 'male', label: 'Male' },
     { value: 'female', label: 'Female' },
     { value: 'genderless', label: 'Genderless' },
     { value: 'unknown', label: 'Unknown' },
-    { value: '', label: 'All' },
   ];
 
   return (
     <FilterBarStyled>
-      <Filter label="Status..." options={statusOptions} selectedValue="" onChange={(value) => handleChange("status", value)} />
-      <Filter label="Species..." options={speciesOptions} selectedValue="" onChange={(value) => handleChange("species", value)} />
-      <Filter label="Gender..." options={genderOptions} selectedValue="" onChange={(value) => handleChange("gender", value)} />
+      <Filter label="Status:" options={statusOptions}  onChange={(value) => handleChange("status", value)} />
+      <Filter label="Species:" options={speciesOptions} onChange={(value) => handleChange("species", value)} />
+      <Filter label="Gender:" options={genderOptions} onChange={(value) => handleChange("gender", value)} />
     </FilterBarStyled>
   );
 };
