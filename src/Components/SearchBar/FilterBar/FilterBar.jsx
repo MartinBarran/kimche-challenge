@@ -5,7 +5,7 @@ import Filter from './Filter/Filter';
 import { FilterBarStyled } from './FilterBarStyles';
 
 //Componente que devuelve los selects del filtro y el borón para resetearlos.
-const FilterBar = ({setFilteredGender, setFilteredSpecies, setFilteredStatus, setSearchedName}) => {
+const FilterBar = ({setFilteredGender, setFilteredSpecies, setFilteredStatus, setSearchedName, setPageNumber}) => {
 
   const handleChange = (key, value) => {
     switch (key) {
@@ -22,6 +22,7 @@ const FilterBar = ({setFilteredGender, setFilteredSpecies, setFilteredStatus, se
       default:
         break;
     }
+    setPageNumber(1);
   };
 
   return (

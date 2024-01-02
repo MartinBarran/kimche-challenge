@@ -17,7 +17,7 @@ const SearchBar = ({setSearchedName, setPageNumber, setFilteredGender, setFilter
         <SearchBarStyled>
             <SearchInput setSearchedName={setSearchedName} setPageNumber={setPageNumber} />
             <SearchButtonsContainer>
-                <FilterBar setFilteredGender={setFilteredGender} setFilteredStatus={setFilteredStatus} setFilteredSpecies={setFilteredSpecies} setSearchedName={setSearchedName} />
+                <FilterBar setFilteredGender={setFilteredGender} setFilteredStatus={setFilteredStatus} setFilteredSpecies={setFilteredSpecies} setSearchedName={setSearchedName} setPageNumber={setPageNumber} />
                 <ResetSearchButton onReset={() => handleReset()}/>
             </SearchButtonsContainer>
         </SearchBarStyled>
