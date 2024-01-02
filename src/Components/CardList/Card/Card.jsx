@@ -12,7 +12,8 @@ const Card = ({ character, openModal }) => {
   return (
     <CardStyled onClick={handleCardClick}>
       <img src={image} alt={name} />
-      {/*<h3>{name}</h3>
+      <p>{name}</p>
+      {/*
       <p>Status: {status}</p>
       <p>Species: {species}</p>
   <p>Gender: {gender}</p>*/}

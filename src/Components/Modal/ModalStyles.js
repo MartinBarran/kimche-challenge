@@ -29,7 +29,7 @@ export const ModalContent = styled.div`
     background: black;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    width: 70%;
+    width: 75%;
     height: 50%;
     max-width:600px;
     overflow-y: auto;
@@ -53,6 +53,9 @@ export const ModalStrings= styled.div`
     width: 100%;
     & span{
         color: lightblue;
+    }
+    & h4{
+        margin: 8px;
     }
     
 `;

@@ -12,6 +12,7 @@ const Modal = ({ characterData, closeModal }) => {
                     <h4><span>Status:</span> {characterData.status}</h4>
                     <h4><span>Specie:</span> {characterData.species}</h4>
                     <h4><span>Gender:</span> {characterData.gender}</h4>
+                    <h4><span>Origin:</span> {characterData.origin.name}</h4>
                 </ModalStrings>
             </ModalInfo>
             <ModalCloseButton onClick={closeModal}>
@@ -21,5 +22,8 @@ const Modal = ({ characterData, closeModal }) => {
     </ModalStyled>
   );
 };
+
+
+
 
   export default Modal;

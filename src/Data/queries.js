@@ -14,6 +14,9 @@ export const GET_CHARACTERS = gql`
         species
         gender
         image
+        origin{
+          name
+        }
       }
     }
   }
